@@ -8,6 +8,7 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<title>Coldigo Geladeiras</title>
 		<link rel="stylesheet" type="text/css" href="../../css/site.css">
+		<script src="../../js/site.js"></script>
   </head>
   <body>
   	<header>
@@ -22,7 +23,7 @@
   	<section>
   	<h2>Fale Conosco</h2>
 	  <p>Ficou alguma duvida ? Preencha este formulario e entraremos em contato!</p>
-	  <form name="frmfaleconosco" method="get" action="#">
+	  <form name="frmfaleconosco" method="get" action="#" onsubmit="validaFaleConosco()">
 		  <fieldset class="faleConosco">
 			  <legend>Dados Pessoais:</legend>
 			  <label for="nome">Nome: </label>
@@ -35,15 +36,16 @@
 		  <fieldset class="faleConosco">
 			  <legend>Motivo do Contato:</legend>
 			  <label for="motivo">Motivo: </label>
-				<select name="selmotivo" id="motivo">
+				<select name="selmotivo" id="motivo" onchange="verificaMotivo(this.value)">
 				  <option value="">Escolha</option>
 				  <option value="RE">Reclamação</option>
 				  <option value="SU">Sugestão</option>
 				  <option value="PR">Informações sobre o Produto</option>
 				</select>
+				<div id="opcaoProduto"></div>
 				<label for="comentario">Comentário: </label>
 				<textarea name="txacomentario" id="comentario"></textarea>
-				<button type="reset">Limpar</button><button type="submit">Enviar</button>
+				<button type="reset" onclick="verificaMotivo(null)">Limpar</button><button type="submit">Enviar</button>
 		  </fieldset>
 	  </form>
   	</section>
