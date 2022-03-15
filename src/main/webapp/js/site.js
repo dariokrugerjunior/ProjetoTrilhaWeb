@@ -1,13 +1,22 @@
 function validaFaleConosco(){
-    if (document.frmfaleconosco.txtnome.value == ""){
-        alert("Preencha o campo Nome.");
+    var nome = document.frmfaleconosco.txtnome.value;
+    var expRegNome = new RegExp("^[A-zÁ-ü]{3,}([ ]{1}[A-zÁ-ü]{2,})+$");
+
+    if(!expRegNome.test(nome)){
+        alert("Preencha o campo Nome corretamente.")
         document.frmfaleconosco.txtnome.focus();
+        return false;   
+    }
+
+    var fone = document.frmfaleconosco.txtfone.value;
+    var expRegFone = new RegExp("^[(]{1}[1-9]{2}[)]{1}[0-9]{4,5}[-]{1}[0-9]{4}$")
+    if(!expRegFone.test(fone)){
+        alert("Preencha o campo Telefone corretamente.")
+        document.frmfaleconosco.txtfone.focus();
         return false;
-    }else if(document.frmfaleconosco.txtfone.value == ""){
-        alert("Preencha o campo Telefone.");
-        document.frmfaleconosco.txtnome.focus();
-        return false;
-    }else if(document.frmFaleconosco.txtemail.value == ""){
+    }
+    
+    if(document.frmFaleconosco.txtemail.value == ""){
         alert("Preencha o campo Email.");
         document.frmfaleconosco.txtnome.focus();
         return false;
@@ -63,3 +72,10 @@ function verificaMotivo(motivo){
         }
     }
 }
+
+
+$(document).ready(function(){   
+	$("header").load("/ProjetoTrilhaWeb/pages/site/general/cabecalho.html");
+	$("nav").load("/ProjetoTrilhaWeb/pages/site/general/menu.html");
+	$("footer").load("/ProjetoTrilhaWeb/pages/site/general/rodape.html");
+});
