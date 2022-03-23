@@ -74,7 +74,7 @@ nav .opcao:hover{
 }
 
 .dropdown:hover .dropdown-content {
-	display: black;
+	display: block;
 }
 section{
 	clear: both;
@@ -84,9 +84,9 @@ section{
 }
 footer{
 	background-color: #005f89;
-	color:#fff;
-	text-align:center;
-	padding:10px;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
 }
 
 
