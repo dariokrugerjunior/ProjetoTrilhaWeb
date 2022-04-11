@@ -89,6 +89,10 @@ footer{
 	padding: 10px;
 }
 
+#modalAviso{
+	display: none;
+}
+
 section h2, section h3{
 	text-align: center;
 }
