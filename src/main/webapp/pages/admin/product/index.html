@@ -1,4 +1,5 @@
 <script src="../../js/product.js"></script>
+<link rel="stylesheet" type="text/css" href="css/admin.css">
 
 <h2>Registro de produtos</h2>
 <form name="frmAddProduto" id="addProduto" class="frmInserir">
@@ -50,3 +51,12 @@
         </table>
     </fieldset>
 </form>
+<h3>Produtos Registrados</h3>
+<form id="filtroProduto" class="frmFiltrar">
+	<fieldset>
+		<legend>Filtrar</legend>
+		<input type="text" name="txtbusca" id="campoBuscaProduto" placeholder="Pesquise pelo modelo">
+		<button type="button">Buscar</button>
+	</fieldset>
+</form>
+<div id="listaProduto" class="listaRegistros"></div>
