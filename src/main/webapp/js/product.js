@@ -129,7 +129,7 @@ $(document).ready(function() {
 				"<td>" + COLDIGO.formatarDinheiro(listaDeProdutos[i].valor)+"</td>" +
 				"<td>" +
 				"<a onclick=\"COLDIGO.produto.exibirEdicao('"+listaDeProdutos[i].id+"')\"><img src='../../imgs/edit.png' alt='Editar registro'></a>" +
-				"<a onclick=\"COLDIGO.produto.excluir('"+listaDeProdutos[i].id+"')\">'"+listaDeProdutos[i].id+"'<img src='../../imgs/delete.png' alt='Excluir registro'></a>" +
+				"<a onclick=\"COLDIGO.produto.excluir('"+listaDeProdutos[i].id+"')\"><img src='../../imgs/delete.png' alt='Excluir registro'></a>" +
 				"</td>" +
 				"</tr>"
 			}
