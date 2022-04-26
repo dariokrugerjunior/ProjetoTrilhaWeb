@@ -185,3 +185,7 @@ section h2, section h3{
 	height: 20px;
 	cursor: pointer;
 }
+
+#modalAviso, .modalEditor{
+	display: none;
+}
