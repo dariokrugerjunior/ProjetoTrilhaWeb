@@ -119,7 +119,6 @@ public class JDBCProdutoDAO implements ProdutoDAO {
 			PreparedStatement p = this.conexao.prepareStatement(comando);
 			p.setInt(1, id);
 			ResultSet rs = p.executeQuery();
-			System.out.println(comando);
 			while(rs.next()) {
 				
 				String categoria = rs.getString("categoria");
