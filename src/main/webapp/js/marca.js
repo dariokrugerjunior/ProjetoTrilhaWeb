@@ -14,7 +14,8 @@ $(document).ready(function() {
 				data: JSON.stringify(marcas),
 				success: function(msg) {
 					COLDIGO.exibirAviso(msg);
-					document.frmAddMarcas.name.value = ""
+					COLDIGO.marcas.buscar();
+					document.frmAddMarcas.name.value = "";
 				},
 				error: function(info) {
 					COLDIGO.exibirAviso("Erro ao cadastrar uma nova marca: " + info.status + " - " + info.statusText)
@@ -35,9 +36,8 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	
 	COLDIGO.marcas.carregarMarcas()
-
 	COLDIGO.marcas.exibir = function(listaDeMarcas) {
 
 		var tabela = "<table>" +
