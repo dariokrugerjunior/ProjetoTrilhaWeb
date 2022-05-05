@@ -36,7 +36,7 @@ $(document).ready(function() {
 			}
 		});
 	}
-	
+
 	COLDIGO.marcas.carregarMarcas()
 	COLDIGO.marcas.exibir = function(listaDeMarcas) {
 
@@ -131,24 +131,25 @@ $(document).ready(function() {
 			}
 		});
 	};
-	
-	COLDIGO.marcas.editar = function(){
-		
+
+
+	COLDIGO.marcas.editar = function() {
+
 		var marca = new Object();
 		marca.id = document.frmEditaMarca.idMarca.value;
 		marca.nome = document.frmEditaMarca.nome.value;
-		
+
 		$.ajax({
 			type: "PUT",
 			url: COLDIGO.PATH + "marca/alterar",
 			data: JSON.stringify(marca),
-			success: function(msg){
+			success: function(msg) {
 				COLDIGO.exibirAviso(msg);
 				COLDIGO.marcas.buscar();
 				$("#modalEditaMarca").dialog("close");
 			},
-			error: function(info){
-				COLDIGO.exibirAviso("Erro ao editar Marca: "+ info.status + " - "+ info.statusText);
+			error: function(info) {
+				COLDIGO.exibirAviso("Erro ao editar Marca: " + info.status + " - " + info.statusText);
 			}
 		});
 	};

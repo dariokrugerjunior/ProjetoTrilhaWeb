@@ -112,7 +112,7 @@ public class MarcaRest extends UtilRest {
 			if(retorno) {
 				msg = "Marca excluido com sucesso!";
 			}else {
-				msg = "Erro ao excluir Marca.";
+				msg = "Marca cadastrada em um produto, verificar produtos.";
 			}
 			
 			conec.fecharConexao();
@@ -162,7 +162,7 @@ public class MarcaRest extends UtilRest {
 			if (retorno) {
 				msg = "Produto alterado com sucesso";
 			}else {
-				msg = "Erro ao alterar Produto";
+				msg = "Erro ao alterar Marca";
 			}
 			
 			conec.fecharConexao();
@@ -172,4 +172,5 @@ public class MarcaRest extends UtilRest {
 			return this.buildErrorResponse(e.getMessage());
 		}
 	}
+	
 }
