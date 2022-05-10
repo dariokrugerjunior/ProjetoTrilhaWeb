@@ -39,8 +39,10 @@ public class JDBCMarcaDAO implements MarcaDAO {
 				marca = new Marca();
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
+				boolean status = rs.getBoolean("status");
 				marca.setId(id);
 				marca.setNome(nome);
+				marca.setStatus(status);
 				listMarcas.add(marca);
 
 			}
@@ -52,7 +54,7 @@ public class JDBCMarcaDAO implements MarcaDAO {
 	}
 
 	public boolean inserir(Marca marca) {
-		String command = "INSERT INTO marcas (id, nome) VALUES (?,?)";
+		String command = "INSERT INTO marcas (id, nome, status) VALUES (?,?, 1)";
 		PreparedStatement p;
 
 		try {
@@ -80,10 +82,12 @@ public class JDBCMarcaDAO implements MarcaDAO {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
+				boolean status = rs.getBoolean("status");
 				
 				marca = new JsonObject();
 				marca.addProperty("id", id);
 				marca.addProperty("nome", nome);
+				marca.addProperty("status", status);
 				listaMarcas.add(marca);
 			}
 
@@ -117,9 +121,11 @@ public class JDBCMarcaDAO implements MarcaDAO {
 			while(rs.next()) {
 				
 				String nome = rs.getString("nome");
+				boolean status = rs.getBoolean("status");
 				
 				marca.setId(id);
 				marca.setNome(nome);
+				marca.setStatus(status);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -136,6 +142,26 @@ public class JDBCMarcaDAO implements MarcaDAO {
 		try {
 			p = this.conexao.prepareStatement(comando);
 			p.setString(1, marca.getNome());	
+			p.setInt(2, marca.getId());
+			p.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	public boolean status(int id) {
+		Marca marca = buscarPorId(id);
+		String comando = "UPDATE marcas SET status=? WHERE id=?";
+		PreparedStatement p;
+		try {
+			p = this.conexao.prepareStatement(comando);
+			if(marca.getStatus()) {
+				p.setBoolean(1, false);
+			} else {
+				p.setBoolean(1, true);
+			}
 			p.setInt(2, marca.getId());
 			p.executeUpdate();
 		}catch (SQLException e) {

@@ -173,4 +173,30 @@ public class MarcaRest extends UtilRest {
 		}
 	}
 	
+	@PUT 
+	@Path("/status/{id}")
+	@Consumes("application/*")
+	public Response status(@PathParam("id") int id){
+		try {
+			Conexao conec = new Conexao();
+			Connection conexao = conec.abrirConexao();
+			JDBCMarcaDAO jdbcMarca = new JDBCMarcaDAO(conexao);
+			boolean retorno = jdbcMarca.status(id);
+			
+			String msg = "";
+			
+			if (retorno) {
+				msg = "Produto alterado com sucesso";
+			}else {
+				msg = "Erro ao alterar Marca";
+			}
+			
+			conec.fecharConexao();
+			return this.buildResponse(msg);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return this.buildErrorResponse(e.getMessage());
+		}
+	}
+	
 }
