@@ -43,6 +43,7 @@ $(document).ready(function() {
 		var tabela = "<table>" +
 			"<tr>" +
 			"<th>Nome</th>" +
+			"<th>Status</th>" +
 			"<th class='acoes'>Ações</th>" +
 			"</tr>";
 
@@ -51,6 +52,7 @@ $(document).ready(function() {
 			for (var i = 0; i < listaDeMarcas.length; i++) {
 				tabela += "<tr>" +
 					"<td>" + listaDeMarcas[i].nome + "</td>" +
+					"<td class='status'><label class='switch'><input "+ (listaDeMarcas[i].status ? "checked" : "") + " type='checkbox' onclick=\"COLDIGO.marcas.status('" + listaDeMarcas[i].id + "')\"><span class='slider round'></span></label></td>" +
 					"<td>" +
 					"<a onclick=\"COLDIGO.marcas.exibirEdicao('" + listaDeMarcas[i].id + "')\"><img src='../../imgs/edit.png' alt='Editar marca'></a>" +
 					"<a onclick=\"COLDIGO.marcas.excluir('" + listaDeMarcas[i].id + "')\"><img src='../../imgs/delete.png' alt='Excluir marca'></a>" +
@@ -141,7 +143,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "PUT",
-			url: COLDIGO.PATH + "marca/alterar",
+			url: COLDIGO.PATH + "marca/alterar" ,
 			data: JSON.stringify(marca),
 			success: function(msg) {
 				COLDIGO.exibirAviso(msg);
@@ -153,4 +155,18 @@ $(document).ready(function() {
 			}
 		});
 	};
+
+	COLDIGO.marcas.status = function(id){
+		$.ajax({
+			type: "PUT",
+			url: COLDIGO.PATH + "marca/status/" + id,
+			success: function(msg) {
+				COLDIGO.exibirAviso(msg);
+			},
+			error: function(info) {
+				COLDIGO.exibirAviso("Erro ao editar Marca: " + info.status + " - " + info.statusText);
+			}
+		});
+	};
+	
 });
